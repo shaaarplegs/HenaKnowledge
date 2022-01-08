@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminDalJPA.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.repository</a> &gt; <span class="el_source">AdminDalJPA.java</span></div><h1>AdminDalJPA.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.repository;
+
+import moee.henaknowledge.dal_interfaces.IAdminDAL;
+import moee.henaknowledge.module.Admin;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.sql.Date;
+import java.util.List;
+
+@Repository
+<span class="fc" id="L12">public class AdminDalJPA implements IAdminDAL {</span>
+
+    @Autowired
+    IAdminRepository repos;
+
+    @Override
+    public Admin getAdminByUsername(String username) {
+<span class="fc" id="L19">        return repos.getAdminByUsername(username);</span>
+    }
+
+    @Override
+    public Admin getAdminByPersonID(int ID) {
+<span class="nc" id="L24">        return repos.getAdminByPersonID(ID);</span>
+    }
+
+    @Override
+    public List&lt;Admin&gt; getAllAdmins() {
+<span class="fc" id="L29">        return repos.findAll();</span>
+    }
+
+    @Override
+    public void AddAdmin(Admin admin) {
+<span class="nc" id="L34">        repos.save(admin);</span>
+<span class="nc" id="L35">    }</span>
+
+    @Override
+    public void DeleteAdmin(int ID) {
+<span class="nc" id="L39">        repos.delete(getAdminByPersonID(ID));</span>
+<span class="nc" id="L40">    }</span>
+
+    @Override
+    public void setAdminInfoById(int ID, String firstname, String lastname, Date DateOfBirth, String Email) {
+<span class="nc" id="L44">            repos.setAdminInfoById(ID,firstname,lastname,DateOfBirth,Email);</span>
+<span class="nc" id="L45">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

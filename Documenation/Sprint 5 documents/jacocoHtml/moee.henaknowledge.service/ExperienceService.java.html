@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExperienceService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.service</a> &gt; <span class="el_source">ExperienceService.java</span></div><h1>ExperienceService.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.service;
+
+import moee.henaknowledge.dal_interfaces.IExperienceDAL;
+import moee.henaknowledge.module.Experience;
+import moee.henaknowledge.service_interfaces.IExperienceService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ExperienceService implements IExperienceService {
+
+    IExperienceDAL dal;
+
+    @Autowired
+<span class="fc" id="L18">    public ExperienceService(IExperienceDAL dal) {</span>
+<span class="fc" id="L19">        this.dal = dal;</span>
+<span class="fc" id="L20">    }</span>
+
+    @Override
+    public Optional&lt;Experience&gt; getExperienceByExperienceID(int ID) {
+<span class="nc" id="L24">        return dal.getExperienceByExperienceID(ID);</span>
+    }
+
+    @Override
+    public List&lt;Experience&gt; getAllExperiences() {
+<span class="nc" id="L29">        return dal.getAllExperiences();</span>
+    }
+
+    @Override
+    public void AddExperience(Experience e) {
+<span class="nc" id="L34">        dal.AddExperience(e);</span>
+<span class="nc" id="L35">    }</span>
+
+
+    @Override
+    public void DeleteExperienceByID(int experienceID) {
+<span class="nc" id="L40">        dal.DeleteExperienceByID(experienceID);</span>
+<span class="nc" id="L41">    }</span>
+
+    @Override
+    public void SetExperienceById(int experienceID, String updatedTitle, String updatedDescription) {
+<span class="nc" id="L45">        dal.SetExperienceById(experienceID,updatedTitle,updatedDescription);</span>
+<span class="nc" id="L46">    }</span>
+
+    @Override
+    public void like(int experienceID, int LikesNumber) {
+<span class="nc" id="L50">        dal.like(experienceID,LikesNumber);</span>
+<span class="nc" id="L51">    }</span>
+
+    @Override
+    public void dislike(int experienceID, int DislikesNumber) {
+<span class="nc" id="L55">        dal.dislike(experienceID,DislikesNumber);</span>
+<span class="nc" id="L56">    }</span>
+
+
+    @Override
+    public void replaceDislike(int experienceID) {
+<span class="nc" id="L61">        dal.replaceDislike(experienceID);</span>
+<span class="nc" id="L62">    }</span>
+
+    @Override
+    public void replaceLike(int experienceID) {
+<span class="nc" id="L66">        dal.replaceLike(experienceID);</span>
+<span class="nc" id="L67">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

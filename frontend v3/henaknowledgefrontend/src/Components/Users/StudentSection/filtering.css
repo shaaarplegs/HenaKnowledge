@@ -1,0 +1,49 @@
+
+.filteringoptions button{
+    background-color:rgba(186, 206, 243, 0.5);
+    padding: 10px;
+    margin: 10px;
+    font-size: 15px;
+    width: 200px;
+}
+
+.filteringoptions button:focus{
+
+    background-color:rgb(60, 63, 57);
+}
+
+.filteringoptions input {
+    padding: 10px;
+}
+
+
+
+
+/*//////////*/
+
+
+.search__input {
+    text-align: center;
+    width: 100%;
+    padding: 12px 24px;
+    background-color: transparent;
+    transition: transform 250ms ease-in-out;
+    font-size: 14px;
+    line-height: 18px;
+    color: #575756;
+    background-color: transparent;
+   background-image: url(http://mihaeltomic.com/codepen/input-search/ic_search_black_24px.svg);
+}
+.search__input::placeholder {
+    color: color(#575756 a(0.8));
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+.search__input:hover, .search__input:focus {
+    padding: 12px 0;
+    outline: 0;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #575756;
+    border-radius: 0;
+    background-position: 100% center;
+}

@@ -1,0 +1,38 @@
+In this website or platform there will be 3 roles.
+
+1 -  Admin.
+
+2 -  Teacher.
+
+3 -  Student.
+
+* each role has some duties in the platform as well as there will be a scoring system for the students and teacher roles.
+
+Some duties :-
+
+ADMIN - sign up students and teachers, control the dash board, check the statistics. 
+
+TEACHER -  check requests and send response, leave a comment on a topic, using the scoring system.
+
+STUDENT  - share experience by posting, leave a comment on a topic, using scoring system, send requests to teachers.
+
+*Scoring system:
+ 
+That system is mainly for teachers and students to encourage them to be more active in the platform which will help sharing the knowledge.
+The more active is the student is the more points they gain. 
+The more teachers respond to student requests the more points they gain.
+
+- Q: What can teachers and students do with these points ?
+
+- A: For instance, they can exchange those points in the admin of the university for real money.
+
+- Q: How does it work technically ? 
+
+- A: Each student and teacher will have their own points saved in our database and they have their own code in the scoring system, once they like to exchange them they just need to give the code to one of the admins there and then the admin gives them the amount of money they earned.
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Admin.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.module</a> &gt; <span class="el_source">Admin.java</span></div><h1>Admin.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.module;
+
+import lombok.*;
+import moee.henaknowledge.util.constant;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import java.sql.Date;
+
+@Entity
+@Getter
+<span class="pc" id="L12">@Setter</span>
+<span class="fc" id="L13">@NoArgsConstructor</span>
+<span class="nc" id="L14">@AllArgsConstructor</span>
+<span class="pc bpc" id="L15" title="17 of 30 branches missed.">@EqualsAndHashCode(callSuper=false)</span>
+public class Admin extends Person{
+
+    @Column(name=&quot;username&quot;, unique=true)
+<span class="fc" id="L19">    private String username;</span>
+
+<span class="fc" id="L21">    private String password;</span>
+
+<span class="fc" id="L23">    private String role;</span>
+
+
+    public Admin(int personID, String firstName, String lastName, Date dateOfBirth, String email, String username, String password, String role) {
+<span class="fc" id="L27">        super(personID, firstName, lastName, dateOfBirth, email);</span>
+<span class="fc" id="L28">        this.username = username;</span>
+<span class="fc" id="L29">        this.password = password;</span>
+<span class="fc" id="L30">        this.role = constant.ADMIN_ROLE;</span>
+<span class="fc" id="L31">    }</span>
+
+    public Admin(String firstName, String lastName, Date dateOfBirth, String email, String username, String password, String role) {
+<span class="nc" id="L34">        super(firstName, lastName, dateOfBirth, email);</span>
+<span class="nc" id="L35">        this.username = username;</span>
+<span class="nc" id="L36">        this.password = password;</span>
+<span class="nc" id="L37">        this.role = constant.ADMIN_ROLE;</span>
+<span class="nc" id="L38">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L42">        return &quot;Admin{&quot; +</span>
+                &quot;username='&quot; + username + '\'' +
+                &quot;, password='&quot; + password + '\'' +
+                &quot;, role='&quot; + role + '\'' +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

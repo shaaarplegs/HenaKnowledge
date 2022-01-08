@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.service</a> &gt; <span class="el_source">AdminService.java</span></div><h1>AdminService.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.service;
+
+import moee.henaknowledge.dal_interfaces.IAdminDAL;
+import moee.henaknowledge.module.Admin;
+import moee.henaknowledge.service_interfaces.IAdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.sql.Date;
+import java.util.List;
+
+@Service
+public class AdminService implements IAdminService {
+
+    IAdminDAL dal;
+<span class="fc" id="L17">    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();</span>
+
+    @Autowired
+<span class="fc" id="L20">    public AdminService(IAdminDAL dal) {</span>
+<span class="fc" id="L21">        this.dal = dal;</span>
+<span class="fc" id="L22">    }</span>
+
+    @Override
+    public Admin getAdminByUsername(String username) {
+<span class="fc" id="L26">        return dal.getAdminByUsername(username);</span>
+    }
+
+    @Override
+    public Admin getAdminByPersonID(int ID) {
+<span class="fc" id="L31">        return dal.getAdminByPersonID(ID);</span>
+    }
+
+    @Override
+    public List&lt;Admin&gt; getAllAdmins() {
+<span class="fc" id="L36">        return dal.getAllAdmins();</span>
+    }
+
+    @Override
+    public void AddAdmin(Admin admin) {
+<span class="fc" id="L41">        String encodedPassword = passwordEncoder.encode(admin.getPassword());</span>
+<span class="fc" id="L42">        admin.setPassword(encodedPassword);</span>
+<span class="fc" id="L43">        dal.AddAdmin(admin);</span>
+<span class="fc" id="L44">    }</span>
+
+    @Override
+    public void DeleteAdmin(int ID) {
+<span class="nc" id="L48">dal.DeleteAdmin(ID);</span>
+<span class="nc" id="L49">    }</span>
+
+    @Override
+    public void setAdminInfoById(int ID, String firstname, String lastname, Date DateOfBirth, String Email) {
+<span class="fc" id="L53">dal.setAdminInfoById(ID,firstname,lastname,DateOfBirth,Email);</span>
+<span class="fc" id="L54">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

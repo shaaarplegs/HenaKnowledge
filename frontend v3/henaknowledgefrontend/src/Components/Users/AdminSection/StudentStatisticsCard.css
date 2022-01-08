@@ -1,0 +1,37 @@
+.statisticsStudentCard{
+    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+   height:100px;
+   width:60%;
+   margin-left:15%;
+   margin-top:5%;
+   display: flex;
+   justify-content: left;
+   align-items: center;
+   border-radius: 50px 20px;
+     -webkit-box-shadow: -2px -1px 15px 7px rgba(0,0,0,0.5);
+   -moz-box-shadow: -3px -2px 30px 14px rgba(0,0,0,0.425);
+   box-shadow: -4px -3px 30px 15px rgba(0,0,0,0.35);
+ }
+ 
+ .fullname{
+   margin-left:10%;
+   font-family: "Times New Roman", Times, serif;
+   font-size:30px;
+   font-style: italic;
+   letter-spacing: 10px; 
+   text-align: left;
+ }
+
+ /* .two-d-chart{
+    margin-left: 30%;
+    padding-right:40px;
+  }
+  */
+
+  .dataV {
+    display: flex;
+    justify-content: center;
+    width: 720px;
+    height: auto;
+    margin-left: 17%;
+  }

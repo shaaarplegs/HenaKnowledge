@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StudentController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.controller</a> &gt; <span class="el_source">StudentController.java</span></div><h1>StudentController.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.controller;
+
+
+import moee.henaknowledge.dto.StudentDTO;
+import moee.henaknowledge.module.Admin;
+import moee.henaknowledge.module.Email;
+import moee.henaknowledge.module.Student;
+import moee.henaknowledge.service.SmtpMailSender;
+import moee.henaknowledge.service_interfaces.IAdminService;
+import moee.henaknowledge.service_interfaces.IStudentService;
+import moee.henaknowledge.util.constant;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/Student&quot;)
+@CrossOrigin(&quot;*&quot;)
+<span class="fc" id="L24">public class StudentController {</span>
+
+    @Autowired
+    private IStudentService service;
+
+    @Autowired
+    private SmtpMailSender smtpMailSender;
+
+
+    @GetMapping(&quot;/testing/confirmed&quot;)
+    public String returnTestingConfirmation() {
+<span class="fc" id="L35">        return &quot;This message is returned by the student controller.&quot;;</span>
+    }
+
+    @GetMapping(&quot;{personID}&quot;)
+    public ResponseEntity&lt;Student&gt; getStudentPath(@PathVariable(value = &quot;personID&quot;) int personID) {
+<span class="nc" id="L40">        var s = service.getStudentByPersonID(personID);</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (s != null) {</span>
+<span class="nc" id="L42">            return ResponseEntity.ok().body(s);</span>
+        } else {
+<span class="nc" id="L44">            return ResponseEntity.notFound().build();</span>
+        }
+    }
+
+
+    @GetMapping(&quot;/getStudent&quot;)
+    public ResponseEntity&lt;Student&gt; getStudentPath(@RequestParam(&quot;username&quot;) String obtainedS) {
+<span class="nc" id="L51">        var s = service.getStudentByUsername(obtainedS);</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (s != null) {</span>
+<span class="nc" id="L53">            return ResponseEntity.ok().body(s);</span>
+        } else {
+<span class="nc" id="L55">            return ResponseEntity.notFound().build();</span>
+        }
+    }
+
+
+    @GetMapping
+    public ResponseEntity&lt;List&lt;Student&gt;&gt; getAllStudents() {
+<span class="nc" id="L62">        var students = service.getAllStudents();</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (students != null) {</span>
+<span class="nc" id="L64">            return ResponseEntity.ok().body(students);</span>
+        } else {
+<span class="nc" id="L66">            return ResponseEntity.notFound().build();</span>
+        }
+    }
+
+
+    @PostMapping(&quot;/add&quot;)
+    public ResponseEntity&lt;Student&gt; createStudent(@RequestBody StudentDTO student) {
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (student == null) {</span>
+<span class="nc" id="L74">            return ResponseEntity.notFound().build();</span>
+        } else {
+
+
+            //async function that sends credentials to the new signed up student
+<span class="nc" id="L79">            var e = new Email(student.getEmail(), &quot;Signing up credentials&quot;, &quot;Your Henaknowledge credentials, username: &quot; +</span>
+<span class="nc" id="L80">                    student.getUsername() + &quot;, password: &quot; + student.getPassword());</span>
+<span class="nc" id="L81">            smtpMailSender.sendTextEmail(e);</span>
+<span class="nc" id="L82">            String msg = &quot;Student added successfully.&quot;;</span>
+
+<span class="nc" id="L84">            Student modifedStudent = new Student(student.getFirstName(), student.getLastName(),student.getDateOfBirth(),student.getEmail(),</span>
+<span class="nc" id="L85">                    student.getSpecialization(),student.getCode(), student.getUsername(), student.getPassword(), student.getRole(), student.getPoints());</span>
+<span class="nc" id="L86">            service.AddStudent(modifedStudent);</span>
+<span class="nc" id="L87">            return ResponseEntity.ok().body(modifedStudent);</span>
+        }
+    }
+
+    @DeleteMapping()
+    public void deleteStudent(@RequestParam int personID) {
+<span class="nc" id="L93">        Student student = service.getStudentByPersonID(personID);</span>
+<span class="nc" id="L94">        Email e = new Email(student.getEmail(), &quot;Fired&quot;, &quot;Your Henaknowledge access has been removed. If you think that is a mistake, please contact Mohammedalharbi000@gmail.com&quot;);</span>
+<span class="nc" id="L95">        smtpMailSender.sendTextEmail(e);</span>
+<span class="nc" id="L96">        service.DeleteStudent(personID);</span>
+<span class="nc" id="L97">    }</span>
+
+
+    @PutMapping()
+    public ResponseEntity&lt;Student&gt; updateStudent(@RequestParam(&quot;PersonID&quot;) int PersonID, @RequestParam(&quot;first_name&quot;) String first_name, @RequestParam(&quot;last_name&quot;) String last_name
+            , @RequestParam(&quot;email&quot;) String email) {
+<span class="nc" id="L103">        Student s = service.getStudentByPersonID(PersonID);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (s == null) {</span>
+<span class="nc" id="L105">            return new ResponseEntity(&quot;Please provide a valid student ID.&quot;, HttpStatus.NOT_FOUND);</span>
+        }
+        else
+        {
+<span class="nc" id="L109">            service.setStudentInfoById(PersonID,first_name,last_name,s.getDateOfBirth(),email);</span>
+<span class="nc" id="L110">            return ResponseEntity.ok().build();</span>
+        }
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

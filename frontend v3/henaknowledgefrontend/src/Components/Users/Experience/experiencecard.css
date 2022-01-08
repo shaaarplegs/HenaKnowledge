@@ -1,0 +1,65 @@
+
+.credit {
+    margin: 10px 0px;
+    color: #888;
+    font-size: 25px;
+    transition: all 0.5s;
+}
+.credit a {
+    color: inherit;
+}
+a, .cardExp__exit, .cardExp__icon {
+    position: relative;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.9);
+}
+.main-container {
+    padding: 30px;
+}
+.cardExp-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+.cardExp {
+
+    background: radial-gradient(#2e8e97, #4c575e);
+    margin: 20px;
+    padding: 20px;
+    width: 500px;
+    min-height: 200px;
+    display: grid;
+    grid-template-rows: 20px 50px 1fr 50px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.5s;
+}
+.cardExp:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.01);
+}
+.cardExp__exit {
+    grid-row: 0.5;
+    justify-self: end;
+}
+.cardExp__icon {
+    grid-row: 0.6666666667;
+    font-size: 30px;
+}
+.cardExp__title {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-width: 450px;
+    font-size: 25px;
+}
+.cardExp__apply {
+    grid-row: 0.8;
+    align-self: center;
+}
+@media (max-width: 1600px) {
+    .cardExp-container {
+        justify-content: center;
+   }
+}

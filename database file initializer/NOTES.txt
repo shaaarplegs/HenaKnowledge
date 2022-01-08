@@ -1,0 +1,32 @@
+instructions  : 
+
+DB used is MySQL for the back to end it needs mysql connector which can be downloaded here 
+
+https://dev.mysql.com/downloads/connector/j/
+
+also needs a server local host to run the sql db (eg. Xampp) :
+
+Xamp link can be found here 
+
+https://www.apachefriends.org/download.html
+
+
+1. download the xampp and install it
+
+2. download my sql connect J and install it
+
+3. open the backend project in Intellij click on file then project structure, then click on add
+
+4. go the path where connect J is installed 
+(usually it is this one C:/C:\Program Files (x86)\MySQL\Connector J 8.0) then 
+choose mysql-connector-java-8.0.23.jar
+
+5. open xampp and start Apache and MySql 
+
+6. head to localhost/phpmyadmin in your browser
+
+7. add a new database with the name henaknowledge_sql_db
+
+8. click on the new database and click on import then upload the provided folder henaknowledge_sql_db.sql in this directory.
+
+9. run Intellij and the backend should properly work.

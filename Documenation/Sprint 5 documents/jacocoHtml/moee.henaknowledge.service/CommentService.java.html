@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommentService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.service</a> &gt; <span class="el_source">CommentService.java</span></div><h1>CommentService.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.service;
+
+import moee.henaknowledge.dal_interfaces.ICommentDAL;
+import moee.henaknowledge.module.Comment;
+import moee.henaknowledge.service_interfaces.ICommentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class CommentService implements ICommentService {
+
+    ICommentDAL dal;
+
+    @Autowired
+<span class="fc" id="L18">    public CommentService(ICommentDAL dal) {</span>
+<span class="fc" id="L19">        this.dal = dal;</span>
+<span class="fc" id="L20">    }</span>
+
+    @Override
+    public Optional&lt;Comment&gt; getCommentByCommentID(int ID) {
+<span class="nc" id="L24">        var allComments = getAllComments();</span>
+        for (Comment c:
+<span class="nc bnc" id="L26" title="All 2 branches missed.">                allComments) {</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">            if(c.getCommentID() == ID){</span>
+<span class="nc" id="L28">                return Optional.of(c);</span>
+            }
+<span class="nc" id="L30">        }</span>
+<span class="nc" id="L31">        return Optional.empty();</span>
+    }
+
+    @Override
+    public List&lt;Comment&gt; getAllComments() {
+<span class="nc" id="L36">        return dal.getAllComments();</span>
+    }
+
+    @Override
+    public List&lt;Comment&gt; getAllCommentsByExperienceID(int ExperienceID) {
+<span class="nc" id="L41">        return dal.getAllCommentsByExperienceID(ExperienceID);</span>
+    }
+
+
+    @Override
+    public void AddComment(Comment c) {
+<span class="nc" id="L47">        dal.AddComment(c);</span>
+<span class="nc" id="L48">    }</span>
+
+
+    @Override
+    public void DeleteCommentByID(int commentID) {
+<span class="nc" id="L53">        dal.DeleteCommentByID(commentID);</span>
+<span class="nc" id="L54">    }</span>
+
+    @Override
+    public void setCommentById(int commentID, String updatedComment) {
+<span class="nc" id="L58">        dal.setCommentById(commentID, updatedComment);</span>
+<span class="nc" id="L59">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,32 @@
+.question {
+  background-color: white;
+  width: 70%;
+  height: auto;
+  margin-left: 15%;
+  padding: 20px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.question p {
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+  text-align: left;
+}
+
+.response {
+  background-color: grey;
+  width: 80%;
+  height: auto;
+  margin-left: 10%;
+  padding: 20px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+.response p {
+  color: white;
+  font-size: 30px;
+  text-align: left;
+}

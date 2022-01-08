@@ -1,0 +1,220 @@
+______________________________________________ STUDENT STORIES ________________________________________________
+Priority 100
+*User Story:
+As a student in university
+I am given username and password for HenaKnowledge platform
+So that I can login
+
+Acceptance criteria:
+I can see a login screen
+I can type in my username and password
+I am logged in and I can see a welcoming page with my name on it.
+
+Priority 80
+*User Story:
+As a student in university
+I can share my experience
+So that I know other users can read it.
+
+Acceptance criteria:
+I am logged in and I can see a share experience button on the navigation bar.
+I can see post topic now button on the share experience page.
+I can write a title for my topic.
+I can write the description of my topic.
+I can upload pictures to my topic.
+I can click on post and my experience now can be seen by all HenaKnowledge users.
+
+Priority 60
+*User Story:
+As a student in university
+I can use scoring system
+So that I can earn money
+
+Acceptance criteria:
+I am logged in and I can see a "your points" button on the navigation bar.
+I can see how much points I own.
+I can see my my points code.
+I can read instructions on how to exchange them for rewards.
+
+Priority 70
+*User Story:
+As a student in university
+I can ask something to a teacher
+So that I get my question answered
+
+Acceptance criteria:
+I am logged in and I can see a "Ask me" button on the navigation bar.
+I can see the available teachers and their specializes.
+I can choose the teacher and type my question.
+I can send "ask me" request to that teacher.
+
+Priority 50
+*User Story:
+As a student in university
+I can check responses I received
+So that I get chance to react to them
+
+Acceptance criteria:
+I can see a welcoming page with my name on it and number of responses I received.
+I see a "responses" button on the navigation bar.
+I can see responses and the teacher who responded next to them, also I can choose between them.
+I can read the response and click on "It was useful" or "It was not very accurate".
+
+Priority 90
+*User Story:
+As a student in university
+I can read about other users experiences
+So that I benefit from their experiences
+
+Acceptance criteria:
+I am logged in and I can see a "experiences" button on the navigation bar.
+I can see all posts and can filter them or use search bar.
+I can click on the post and read it.
+I can leave a comment on it and / or a like on the topic.
+I can see my comment posted and the number of likes increased.
+    
+User Story priority 100 guestimated time: (1d)
+User Story priority 90 guestimated time: (8h)
+User Story priority 80 guestimated time: (2d)
+User Story priority 70guestimated time(4hours)
+User Story priority 60guestimated time(3hours)
+User Story priority 50guestimated time(2hours)
+
+- Total student stories guestimated time is 3 days and 17 hours
+
+______________________________________________ TEACHER STORIES ________________________________________________
+Priority 100
+*User Story:
+As a teacher in university
+I am given username and password for HenaKnowledge platform
+So that I can login to the platform
+
+Acceptance criteria:
+I can see a login screen
+I can type in my username and password
+I am logged in and I can see a welcoming page with my name on it.
+
+Priority 90
+*User Story:
+As a teacher in university
+I can check the requests from students
+So that I respond to them after checking them out
+
+Acceptance criteria:
+I can see a welcoming page with my name on it and number of requests I received.
+I can see a "incoming requests" button on the navigation bar.
+I can see the requests and who sent them, also choose between them.
+I can type response and send it.
+
+Priority 70
+*User Story:
+As a teacher in university
+I can respond to one of the student requests
+So that I can see their reaction
+
+Acceptance criteria:
+I can see a "incoming requests" button on the navigation bar.
+I can see the request I responded to in a reaction section.
+I can see whether the student clicked on "It was useful" or "It was not very accurate" or even "the student did not react yet".
+
+Priority 50
+*User Story:
+As a teacher in university
+I can read about other users experiences
+So that I can benefit from other users experiences
+
+
+Acceptance criteria:
+I am logged in and I can see a "experiences" button on the navigation bar.
+I can see all posts and can filter them or use search bar.
+I can click on the post and read it.
+I can leave a comment on it and / or a like on the topic.
+I can see my comment posted and the number of likes increased.
+
+Priority 60
+*User Story:
+As a teacher in university
+I can respond to incoming requests
+So that I increase my scoring system points
+
+Acceptance criteria:
+I am logged in and I can see a "your points" button on the navigation bar.
+I can see how much points I own.
+I can see my my points code.
+I can read instructions on how to exchange them for rewards.
+
+User Story priority 100 guestimated time: (12h)
+User Story priority 90 guestimated time: (2d)
+User Story priority 70guestimated time(12h)
+User Story priority 60guestimated time(3hours)
+User Story priority 50guestimated time(10h)
+
+- Total teachers stories guestimated time is 3 days and 13 hours
+______________________________________________ ADMIN STORIES ________________________________________________
+Priority 100
+*User Story:
+As an admin in university
+I can sign students or teachers up
+So that I make sure students and teachers have access to the platform
+
+Acceptance criteria:
+I am logged in with pre-made account by the developer of the platform.
+I can see on the navigation bar "sign up" button.
+I can fill in the person personal and organizational information in addition to their role "student" or "teacher".
+I can click sign up and their credentials are sent to their email.
+
+Priority 90
+*User Story:
+As an admin in university
+I can check the statistics up 
+So that I am informed with the data and numbers in the platform
+
+Acceptance criteria:
+I can see on the navigation bar "statistics" button.
+I can see in a data visualization the students that are active and the teachers the high respond numbers and other available data.
+
+Priority 60
+*User Story:
+As an admin in university
+I can check an active student or teacher profile
+So that I know who deserves to be rewarded perhaps
+
+Acceptance criteria:
+I can see on the navigation bar "statistics" button.
+I can see the names of the students or teacher that are active.
+I can click on the name of the student or teacher and their profile will open.
+
+Priority 80
+*User Story:
+As an admin in university
+I can exchange points of HenaKnowledge for real money to users
+So that I inform the teachers and students to get motivated to be more active.
+
+Acceptance criteria:
+I can see on the navigation bar "exchange" button.
+I can type in the code the user has given me.
+I can see how much money they earned based on how active they were.
+
+Priority 70
+*User Story:
+As an admin in university
+I can change some of the controls in the dash board
+So that I make sure everything is set currectly
+
+Acceptance criteria:
+I can see on the navigation bar "dash board" button.
+I can see current overall settings of the platform. 
+I can change settings and all users will see the effect has taken place.
+
+
+User Story priority 100 guestimated time: (1d 12h)
+User Story priority 90 guestimated time: (1d)
+User Story priority 80guestimated time(4h)
+User Story priority 70guestimated time(2d)
+User Story priority 60guestimated time(3h)
+
+- Total admin stories guestimated time is 3 days and 19 hours
+
+______________________________________________________________________
+
+- Total stories guestimated time is 11 days and 1 hour.

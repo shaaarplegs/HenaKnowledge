@@ -1,0 +1,48 @@
+*User Story:
+As a student in university
+I am given username and password for HenaKnowledge platform
+So that I can login
+
+
+*User Story:
+As a student in university
+I can use scoring system
+So that I can earn money
+
+*User Story:
+As a teacher in university
+I am given username and password for HenaKnowledge platform
+So that I can login to the platform
+
+
+*User Story:
+As an admin in university
+I can sign students or teachers up
+So that I make sure students and teachers have access to the platform
+
+*As a student in university 
+I can share my experience 
+So that I know other users can read it.
+
+*As a student in university 
+I can read about other users experiences 
+So that I benefit from their experiences
+
+*As a teacher in university 
+I can read about other users experiences So that 
+I can benefit from other users experiences
+
+*As a teacher in university 
+I can comment in a user experiences 
+So that I share my thoughts about the experience I read
+
+
+
+
+
+
+
+
+
+
+

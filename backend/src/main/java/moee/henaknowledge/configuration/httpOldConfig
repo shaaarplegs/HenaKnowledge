@@ -1,0 +1,10 @@
+without JWT
+
+code block
+
+{
+        http.authorizeRequests().antMatchers("/Admin/**").hasRole("Admin")
+                .antMatchers("/Student/**").hasRole("Student")
+                .antMatchers("/Teacher/**").hasRole("Teacher")
+                .and().formLogin();
+}

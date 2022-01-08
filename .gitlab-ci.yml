@@ -1,0 +1,46 @@
+variables:
+    GIT_DEPTH: 0
+
+stages:
+    - build
+    - test
+    - sonarQube
+    - cypress
+    - docker-build
+
+build:
+    stage: build
+    script:     
+        - cd backend   
+        - ./gradlew build
+
+test:
+    stage: test
+    script:   
+        - cd backend     
+        - ./gradlew test
+
+sonarQube:
+    stage: sonarQube
+    script:   
+        - cd backend      
+        - ./gradlew sonarqube
+
+cypress:
+    stage: cypress
+    script:   
+        - cd "frontend v3"
+        - cd henaknowledgefrontend
+        - npx cypress run
+
+docker-build:
+    stage: docker-build
+    before_script:
+        - type cred.txt | docker login --username mmandco --password-stdin
+    script:   
+        - docker build -t mmandco/henaknowledge:latestversion .
+        - docker push mmandco/henaknowledge:latestversion
+
+after_script:
+    - echo "End CI"   
+    - exit      

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Comment.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.module</a> &gt; <span class="el_source">Comment.java</span></div><h1>Comment.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.module;
+
+import lombok.*;
+
+import javax.persistence.*;
+
+@Entity
+@Getter
+<span class="pc" id="L9">@Setter</span>
+<span class="pc bpc" id="L10" title="19 of 20 branches missed.">@EqualsAndHashCode</span>
+@Table(name= &quot;Comment&quot;)
+public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+<span class="fc" id="L16">    private int commentID;</span>
+<span class="fc" id="L17">    private int personID;</span>
+    @Lob
+<span class="fc" id="L19">    private String commentBody;</span>
+<span class="fc" id="L20">    private int experienceID;</span>
+
+<span class="nc" id="L22">    public Comment(int commentID, int personID, String commentBody) {</span>
+<span class="nc" id="L23">        this.commentID = commentID;</span>
+<span class="nc" id="L24">        this.personID = personID;</span>
+<span class="nc" id="L25">        this.commentBody = commentBody;</span>
+<span class="nc" id="L26">    }</span>
+
+<span class="fc" id="L28">    public Comment(int commentID, int personID, String commentBody, int experienceID) {</span>
+<span class="fc" id="L29">        this.commentID = commentID;</span>
+<span class="fc" id="L30">        this.personID = personID;</span>
+<span class="fc" id="L31">        this.commentBody = commentBody;</span>
+<span class="fc" id="L32">        this.experienceID = experienceID;</span>
+<span class="fc" id="L33">    }</span>
+
+<span class="fc" id="L35">    public Comment() { }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L39">        return &quot;Comment{&quot; +</span>
+                &quot;commentID=&quot; + commentID +
+                &quot;, personID=&quot; + personID +
+                &quot;, commentBody='&quot; + commentBody + '\'' +
+                &quot;, experienceID=&quot; + experienceID +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,26 @@
+.contactCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(149, 255, 248);
+  background: radial-gradient(
+    circle,
+    rgba(149, 255, 248, 0.7514356084230567) 0%,
+    rgba(140, 223, 182, 0.614) 100%
+  );
+  width: 65%;
+  margin: 100px 20px 75px 15%;
+  height: 140px;
+  font-size: 60px;
+  border-radius: 25px;
+  box-shadow: -4px -3px 20px 3px rgba(0, 0, 0, 0.226);
+}
+.historyIcon {
+  max-width: 50px;
+  max-height: 50px;
+  margin-left: 35px;
+}
+
+.contactCardbtn {
+    width: 120px;
+}

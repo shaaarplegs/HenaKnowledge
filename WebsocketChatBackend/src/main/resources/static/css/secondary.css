@@ -1,0 +1,34 @@
+
+  .session {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: 50px;
+    margin: auto auto;
+    border-radius: 4px;
+  }
+  .right {
+
+    display: flex;
+    justify-content: center;
+    flex: 100%;
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: grey;
+    text-align: center;
+    margin-right: 200px;
+    color: #333333;
+  }
+  
+  .left {
+    width: 250px;
+    height: auto;
+    min-height: 100%;
+  }
+  .left svg {
+    height: 40px;
+    width: auto;
+    display: none;
+    margin-top: 90%;
+  }
+  

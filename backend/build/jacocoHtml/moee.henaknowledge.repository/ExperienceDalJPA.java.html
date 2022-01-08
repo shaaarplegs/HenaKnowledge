@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExperienceDalJPA.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.repository</a> &gt; <span class="el_source">ExperienceDalJPA.java</span></div><h1>ExperienceDalJPA.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.repository;
+
+import moee.henaknowledge.dal_interfaces.IExperienceDAL;
+import moee.henaknowledge.dal_interfaces.IExperienceOpinionDAL;
+import moee.henaknowledge.module.Experience;
+import moee.henaknowledge.module.ExperienceOpinion;
+import moee.henaknowledge.util.points;
+import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationRegistryBasedSynchronizationStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+<span class="fc" id="L16">public class ExperienceDalJPA implements IExperienceDAL {</span>
+
+    @Autowired
+    IExperienceRepository repos;
+
+    @Autowired
+    IStudentRepository studentRepos;
+
+    @Autowired
+    ITeacherRepository teacherRepos;
+
+    @Autowired
+    IExperienceOpinionRepository Opinionrepos;
+
+    @Override
+    public Optional&lt;Experience&gt; getExperienceByExperienceID(int ID) {
+<span class="nc" id="L32">        return repos.findByExperienceID(ID);</span>
+    }
+
+    @Override
+    public List&lt;Experience&gt; getAllExperiences() {
+<span class="nc" id="L37">        return repos.findAll();</span>
+    }
+
+
+    private void increasePointsPerExperience(Experience experience ){
+
+<span class="nc" id="L43">        var publisher = experience.getPersonID();</span>
+        for (var student:
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                studentRepos.findAll()) {</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if(student.getPersonID() == publisher){</span>
+<span class="nc" id="L47">                studentRepos.updatePoints(publisher,student.getPoints()+points.pointsPerExperience);</span>
+            }
+<span class="nc" id="L49">        }</span>
+        for (var teacher:
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                teacherRepos.findAll()) {</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if(teacher.getPersonID() == publisher){</span>
+<span class="nc" id="L53">                teacherRepos.updatePoints(publisher,teacher.getPoints()+points.pointsPerExperience);</span>
+            }
+<span class="nc" id="L55">        }</span>
+<span class="nc" id="L56">    }</span>
+
+    private void increasePointsPerLike(Experience experience ){
+
+<span class="nc" id="L60">        var publisher = experience.getPersonID();</span>
+        for (var student:
+<span class="nc bnc" id="L62" title="All 2 branches missed.">                studentRepos.findAll()) {</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if(student.getPersonID() == publisher){</span>
+<span class="nc" id="L64">                studentRepos.updatePoints(publisher,student.getPoints()+points.pointsPerLike);</span>
+            }
+<span class="nc" id="L66">        }</span>
+        for (var teacher:
+<span class="nc bnc" id="L68" title="All 2 branches missed.">                teacherRepos.findAll()) {</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if(teacher.getPersonID() == publisher){</span>
+<span class="nc" id="L70">                teacherRepos.updatePoints(publisher,teacher.getPoints()+points.pointsPerLike);</span>
+            }
+<span class="nc" id="L72">        }</span>
+<span class="nc" id="L73">    }</span>
+
+    private void decreasePointPerDislike(Experience experience ){
+
+<span class="nc" id="L77">        var publisher = experience.getPersonID();</span>
+        for (var student:
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                studentRepos.findAll()) {</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            if(student.getPersonID() == publisher){</span>
+<span class="nc" id="L81">                studentRepos.updatePoints(publisher,student.getPoints()-points.pointsPerDislike);</span>
+            }
+<span class="nc" id="L83">        }</span>
+        for (var teacher:
+<span class="nc bnc" id="L85" title="All 2 branches missed.">                teacherRepos.findAll()) {</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if(teacher.getPersonID() == publisher){</span>
+<span class="nc" id="L87">                teacherRepos.updatePoints(publisher,teacher.getPoints()-points.pointsPerDislike);</span>
+            }
+<span class="nc" id="L89">        }</span>
+<span class="nc" id="L90">    }</span>
+
+    @Override
+    public void AddExperience(Experience experience) {
+<span class="nc" id="L94">         repos.save(experience);</span>
+<span class="nc" id="L95">         increasePointsPerExperience(experience);</span>
+<span class="nc" id="L96">    }</span>
+
+    @Override
+    public void DeleteExperienceByID(int experienceID) {
+<span class="nc" id="L100">        repos.deleteById(experienceID);</span>
+<span class="nc" id="L101">    }</span>
+
+    @Override
+    public void SetExperienceById(int experienceID, String updatedTitle, String updatedDescription) {
+<span class="nc" id="L105">        repos.updatedExperienceByExperienceID(experienceID,updatedTitle,updatedDescription);</span>
+<span class="nc" id="L106">    }</span>
+
+    private ExperienceOpinion getExperienceOpinionHelpingMethod(int experienceID, int personID) {
+        //check if experience opinion exists given experienceID and Person ID
+<span class="nc" id="L110">        var opinion = Opinionrepos.findExperienceOpinionByPersonIDAndExperienceID(</span>
+                personID,experienceID
+        );
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if(opinion.isPresent()){</span>
+<span class="nc" id="L114">            return opinion.get();</span>
+        }
+<span class="nc" id="L116">        return null;</span>
+    }
+
+
+
+    @Override
+    public void like(int experienceID, int personID) {
+
+<span class="nc" id="L124">        var theExperience = repos.findById(experienceID);</span>
+<span class="nc" id="L125">        var theExperienceOpinion = getExperienceOpinionHelpingMethod(experienceID, personID);</span>
+
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        if(theExperienceOpinion == null){</span>
+            //the person would like to like or dislike for the first time in the specified experienceID
+<span class="nc" id="L129">            Opinionrepos.save(new ExperienceOpinion(1,0,experienceID,personID));</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if(theExperience.isPresent()){</span>
+<span class="nc" id="L131">                repos.likeTheExperience(experienceID,theExperience.get().getLikes()+1);</span>
+<span class="nc" id="L132">                increasePointsPerLike(theExperience.get());</span>
+            }
+        }
+        else {
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            if(theExperienceOpinion.getLikes() == 1) {</span>
+                // trying to like the experience again
+            }
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            else if ( theExperienceOpinion.getDislikes() == 1) {</span>
+<span class="nc" id="L140">                Opinionrepos.updateOpinion(theExperienceOpinion.getOpinionID(),1,0);</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">                if(theExperience.isPresent()) {</span>
+<span class="nc" id="L142">                    repos.dislikesTheExperience(experienceID, theExperience.get().getDislikes() - 1);</span>
+<span class="nc" id="L143">                    repos.likeTheExperience(experienceID, theExperience.get().getLikes() + 1);</span>
+<span class="nc" id="L144">                    increasePointsPerLike(theExperience.get());</span>
+                }
+            }
+        }
+<span class="nc" id="L148">    }</span>
+
+    @Override
+    public void dislike(int experienceID, int personID) {
+
+<span class="nc" id="L153">        var theExperience = repos.findById(experienceID);</span>
+<span class="nc" id="L154">        var theExperienceOpinion = getExperienceOpinionHelpingMethod(experienceID, personID);</span>
+
+<span class="nc bnc" id="L156" title="All 2 branches missed.">        if(theExperienceOpinion == null){</span>
+            //the person would like to like or dislike for the first time in the specified experienceID
+<span class="nc" id="L158">            Opinionrepos.save(new ExperienceOpinion(0,1,experienceID,personID));</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if(theExperience.isPresent()) {</span>
+<span class="nc" id="L160">                repos.dislikesTheExperience(experienceID, theExperience.get().getDislikes()+1);</span>
+<span class="nc" id="L161">                decreasePointPerDislike(theExperience.get());</span>
+            }
+        }
+        else {
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if(theExperienceOpinion.getLikes() == 1) {</span>
+<span class="nc" id="L166">                Opinionrepos.updateOpinion(theExperienceOpinion.getOpinionID(),0,1);</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">                if(theExperience.isPresent()) {</span>
+<span class="nc" id="L168">                    repos.dislikesTheExperience(experienceID, theExperience.get().getDislikes() + 1);</span>
+<span class="nc" id="L169">                    repos.likeTheExperience(experienceID, theExperience.get().getLikes() - 1);</span>
+<span class="nc" id="L170">                    decreasePointPerDislike(theExperience.get());</span>
+                }
+            }
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            else if ( theExperienceOpinion.getDislikes() == 1) {</span>
+                // trying to dislike the experience again
+            }
+        }
+<span class="nc" id="L177">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

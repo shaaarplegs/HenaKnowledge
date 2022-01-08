@@ -1,0 +1,23 @@
+
+
+.widget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: rgba(0, 0, 0, 0.822);
+    margin: 20px 20px 20px 20%;
+    width: 60%;
+}
+.widget button{
+    font-size: 50px;
+}
+
+.widgethasshared {
+    background-color: rgb(53, 0, 247);
+}
+
+
+.widgethasnotshared {
+    background-color: rgb(49, 49, 49);
+}

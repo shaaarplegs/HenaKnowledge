@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Teacher.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.module</a> &gt; <span class="el_source">Teacher.java</span></div><h1>Teacher.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.module;
+
+import lombok.*;
+import moee.henaknowledge.util.constant;
+
+import javax.persistence.Entity;
+import java.sql.Date;
+
+@Entity
+@Getter
+<span class="pc" id="L11">@Setter</span>
+<span class="fc" id="L12">@NoArgsConstructor</span>
+<span class="pc bpc" id="L13" title="28 of 48 branches missed.">@EqualsAndHashCode(callSuper=false)</span>
+public class Teacher extends Person{
+
+<span class="fc" id="L16">    private String specialization;</span>
+
+<span class="fc" id="L18">    private String code;</span>
+
+<span class="fc" id="L20">    private String username;</span>
+
+<span class="fc" id="L22">    private String password;</span>
+
+<span class="fc" id="L24">    private String role;</span>
+
+<span class="fc" id="L26">    private int points;</span>
+
+
+    public Teacher(int personID, String firstName, String lastName, Date dateOfBirth, String email, String specialization, String code, String username, String password, String role, int points) {
+<span class="fc" id="L30">        super(personID, firstName, lastName, dateOfBirth, email);</span>
+<span class="fc" id="L31">        this.specialization = specialization;</span>
+<span class="fc" id="L32">        this.code = code;</span>
+<span class="fc" id="L33">        this.username = username;</span>
+<span class="fc" id="L34">        this.password = password;</span>
+<span class="fc" id="L35">        this.role = constant.TEACHER_ROLE;</span>
+<span class="fc" id="L36">        this.points = points;</span>
+<span class="fc" id="L37">    }</span>
+
+        public Teacher(String firstName, String lastName, Date dateOfBirth, String email, String specialization, String code, String username, String password, String role, int points) {
+<span class="fc" id="L40">            super(firstName, lastName, dateOfBirth, email);</span>
+<span class="fc" id="L41">        this.specialization = specialization;</span>
+<span class="fc" id="L42">        this.code = code;</span>
+<span class="fc" id="L43">        this.username = username;</span>
+<span class="fc" id="L44">        this.password = password;</span>
+<span class="fc" id="L45">        this.role = constant.TEACHER_ROLE;</span>
+<span class="fc" id="L46">        this.points = points;</span>
+<span class="fc" id="L47">    }</span>
+
+<span class="nc" id="L49">    public Teacher(String specialization, String code, String username, String password, String role, int points) {</span>
+<span class="nc" id="L50">        this.specialization = specialization;</span>
+<span class="nc" id="L51">        this.code = code;</span>
+<span class="nc" id="L52">        this.username = username;</span>
+<span class="nc" id="L53">        this.password = password;</span>
+<span class="nc" id="L54">        this.role = constant.TEACHER_ROLE;</span>
+<span class="nc" id="L55">        this.points = points;</span>
+<span class="nc" id="L56">    }</span>
+
+
+    @Override
+    public String toString() {
+<span class="fc" id="L61">        return &quot;Teacher{&quot; +</span>
+                &quot;specialization='&quot; + specialization + '\'' +
+                &quot;, code='&quot; + code + '\'' +
+                &quot;, username='&quot; + username + '\'' +
+                &quot;, password='&quot; + password + '\'' +
+                &quot;, role='&quot; + role + '\'' +
+                &quot;, points=&quot; + points +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,28 @@
+ALL USER STORIES that are done are shown in demo videos folder inside sprint 4 folder
+
+*User Story:
+As a student in university
+I am given username and password for HenaKnowledge platform
+So that I can login
+
+
+*User Story:
+As a student in university
+I can use scoring system
+So that I can earn money
+
+*User Story:
+As a teacher in university
+I am given username and password for HenaKnowledge platform
+So that I can login to the platform
+
+
+*User Story:
+As an admin in university
+I can sign students or teachers up
+So that I make sure students and teachers have access to the platform
+
+
+
+
+

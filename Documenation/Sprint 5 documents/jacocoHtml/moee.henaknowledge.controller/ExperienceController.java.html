@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExperienceController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.controller</a> &gt; <span class="el_source">ExperienceController.java</span></div><h1>ExperienceController.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.controller;
+
+
+
+
+import moee.henaknowledge.dto.ExperienceDTO;
+import moee.henaknowledge.dto.ExperienceOpinionDTO;
+import moee.henaknowledge.module.Experience;
+import moee.henaknowledge.module.ExperienceOpinion;
+import moee.henaknowledge.service_interfaces.IExperienceOpinionService;
+import moee.henaknowledge.service_interfaces.IExperienceService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/Experience&quot;)
+@CrossOrigin(&quot;*&quot;)
+<span class="fc" id="L23">public class ExperienceController {</span>
+
+    @Autowired
+    private IExperienceService service;
+
+    @Autowired
+    private IExperienceOpinionService opinionService;
+
+
+    @GetMapping()
+    public List&lt;Experience&gt; GetAllExperiences() {
+<span class="nc" id="L34">       return service.getAllExperiences();</span>
+    }
+
+    @DeleteMapping()
+    public void DeleteExperience(@RequestParam int experienceID) {
+<span class="nc" id="L39">        service.DeleteExperienceByID(experienceID);</span>
+<span class="nc" id="L40">    }</span>
+
+    @PutMapping()
+    public ResponseEntity&lt;Experience&gt; updateExperience(@RequestParam(&quot;ExperienceID&quot;) int experienceID, @RequestParam(&quot;title&quot;) String title,
+                                                  @RequestParam(&quot;description&quot;) String description) {
+<span class="nc" id="L45">        var a = service.getExperienceByExperienceID(experienceID);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (a.isEmpty()) {</span>
+<span class="nc" id="L47">            return ResponseEntity.notFound().build();</span>
+        }
+        else
+        {
+<span class="nc" id="L51">            service.SetExperienceById(experienceID,title,description);</span>
+<span class="nc" id="L52">            return ResponseEntity.ok().body(a.get());</span>
+        }
+    }
+
+    @PostMapping(&quot;/Add&quot;)
+    public ResponseEntity&lt;Experience&gt; createExperience(@RequestBody ExperienceDTO eDTO) {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (eDTO == null)</span>
+        {
+<span class="nc" id="L60">            return ResponseEntity.notFound().build();</span>
+        } else {
+
+<span class="nc" id="L63">            Experience modifiedExperience = new Experience(eDTO.getTitle(),eDTO.getDescription(),0,0,</span>
+<span class="nc" id="L64">                    eDTO.getPersonID());</span>
+<span class="nc" id="L65">            service.AddExperience(modifiedExperience);</span>
+<span class="nc" id="L66">            return ResponseEntity.ok().body(modifiedExperience);</span>
+        }
+    }
+
+    private int GetNumberOfLikes(int experienceID) {
+<span class="nc" id="L71">        var all = opinionService.getAllExperienceOpinions();</span>
+<span class="nc" id="L72">        var numberOfLikes = 0;</span>
+        for (ExperienceOpinion a:
+<span class="nc bnc" id="L74" title="All 2 branches missed.">                all) {</span>
+<span class="nc bnc" id="L75" title="All 4 branches missed.">            if(a.getExperienceID() == experienceID &amp;&amp; a.getLikes() == 1){</span>
+<span class="nc" id="L76">                numberOfLikes++;</span>
+            }
+<span class="nc" id="L78">        }</span>
+<span class="nc" id="L79">        return numberOfLikes;</span>
+    }
+
+    private int GetNumberOfDisLikes(int experienceID) {
+<span class="nc" id="L83">        var all = opinionService.getAllExperienceOpinions();</span>
+<span class="nc" id="L84">        var numberOfDisLikes = 0;</span>
+        for (ExperienceOpinion a:
+<span class="nc bnc" id="L86" title="All 2 branches missed.">                all) {</span>
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            if(a.getExperienceID() == experienceID &amp;&amp; a.getDislikes() == 1){</span>
+<span class="nc" id="L88">                numberOfDisLikes++;</span>
+            }
+<span class="nc" id="L90">        }</span>
+<span class="nc" id="L91">        return numberOfDisLikes;</span>
+    }
+
+    @PostMapping(&quot;/like&quot;)
+    public String like(@RequestParam(&quot;ExperienceID&quot;) int experienceID, @RequestBody ExperienceOpinionDTO eoDTO) {
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (opinionService.getExperienceOpinionByPersonID(eoDTO.getPersonID()) == null)</span>
+        {
+<span class="nc" id="L99">            ExperienceOpinion modifiedExperienceOpinion = new ExperienceOpinion(1,0,eoDTO.getExperienceID(),eoDTO.getPersonID());</span>
+<span class="nc" id="L100">            opinionService.AddExperienceOpinionOpinion(modifiedExperienceOpinion);</span>
+<span class="nc" id="L101">            service.like(eoDTO.getExperienceID(),GetNumberOfLikes(experienceID));</span>
+<span class="nc" id="L102">            return &quot;experience opinion added, like increased&quot;;</span>
+        }
+        else
+        {
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            if(opinionService.getExperienceOpinionByPersonID(eoDTO.getPersonID()).getDislikes() == 1){</span>
+<span class="nc" id="L107">                opinionService.like(opinionService.getExperienceOpinionByPersonID(eoDTO.getPersonID()).getOpinionID());</span>
+<span class="nc" id="L108">                service.replaceDislike(eoDTO.getExperienceID());</span>
+<span class="nc" id="L109">                return &quot;The dislike had been replaced with a like for the given experience.&quot;;</span>
+            }
+<span class="nc" id="L111">            System.out.println(opinionService.getExperienceOpinionByPersonID(eoDTO.getPersonID()));</span>
+<span class="nc" id="L112">            return &quot;experience opinion exist, like has not been increased.&quot;;</span>
+        }
+
+    }
+
+    @PostMapping(&quot;/dislike&quot;)
+    public String dislike(@RequestParam(&quot;ExperienceID&quot;) int experienceID, @RequestBody ExperienceOpinionDTO eoDTO) {
+<span class="nc bnc" id="L119" title="All 2 branches missed.">        if (opinionService.getExperienceOpinionByPersonID(eoDTO.getPersonID()) == null)</span>
+        {
+<span class="nc" id="L121">            ExperienceOpinion modifiedExperienceOpinion = new ExperienceOpinion(0,1,eoDTO.getExperienceID(),eoDTO.getPersonID());</span>
+<span class="nc" id="L122">            opinionService.AddExperienceOpinionOpinion(modifiedExperienceOpinion);</span>
+<span class="nc" id="L123">            service.dislike(eoDTO.getExperienceID(), GetNumberOfDisLikes(experienceID));</span>
+<span class="nc" id="L124">            return &quot;experience opinion added, dislike increased&quot;;</span>
+        }
+        else
+        {
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if(opinionService.getExperienceOpinionByPersonID(eoDTO.getPersonID()).getLikes() == 1){</span>
+<span class="nc" id="L129">                opinionService.dislike(opinionService.getExperienceOpinionByPersonID(eoDTO.getPersonID()).getOpinionID());</span>
+<span class="nc" id="L130">                service.replaceLike(eoDTO.getExperienceID());</span>
+<span class="nc" id="L131">                return &quot;The like had been replaced with a dislike for the given experience.&quot;;</span>
+            }
+<span class="nc" id="L133">            System.out.println(opinionService.getExperienceOpinionByPersonID(eoDTO.getPersonID()));</span>
+<span class="nc" id="L134">            return &quot;experience opinion exist, dislikes has not been increased.&quot;;</span>
+        }
+    }
+
+    @GetMapping(&quot;/getExperience&quot;)
+    public ResponseEntity&lt;Experience&gt; getExperience(@RequestParam(&quot;ExperienceID&quot;) int ExperienceID) {
+<span class="nc" id="L140">        var s = service.getExperienceByExperienceID(ExperienceID);</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">        if (s.isPresent()) {</span>
+<span class="nc" id="L142">            return ResponseEntity.ok().body(s.get());</span>
+        } else {
+<span class="nc" id="L144">            return ResponseEntity.notFound().build();</span>
+        }
+    }
+
+    @GetMapping(&quot;/getExperienceOpinion&quot;)
+    public ExperienceOpinion getExperienceOpinion(@RequestParam(&quot;ExperienceID&quot;) int ExperienceID, @RequestParam(&quot;PersonID&quot;) int PersonID) {
+<span class="nc" id="L150">        var all = opinionService.getAllExperienceOpinions();</span>
+        for (ExperienceOpinion a:
+<span class="nc bnc" id="L152" title="All 2 branches missed.">                all) {</span>
+<span class="nc bnc" id="L153" title="All 4 branches missed.">            if(a.getPersonID() == PersonID &amp;&amp; a.getExperienceID() == a.getExperienceID()){</span>
+<span class="nc" id="L154">                return a;</span>
+            }
+<span class="nc" id="L156">        }</span>
+<span class="nc" id="L157">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

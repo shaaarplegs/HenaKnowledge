@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContactService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Henaknowledge</a> &gt; <a href="index.source.html" class="el_package">moee.henaknowledge.service</a> &gt; <span class="el_source">ContactService.java</span></div><h1>ContactService.java</h1><pre class="source lang-java linenums">package moee.henaknowledge.service;
+
+import moee.henaknowledge.dal_interfaces.IContactDAL;
+import moee.henaknowledge.module.Contact;
+import moee.henaknowledge.service_interfaces.IContactService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ContactService implements IContactService {
+
+    IContactDAL dal;
+
+    @Autowired
+<span class="fc" id="L18">    public ContactService(IContactDAL dal) {</span>
+<span class="fc" id="L19">        this.dal = dal;</span>
+<span class="fc" id="L20">    }</span>
+
+    @Override
+    public Optional&lt;Contact&gt; getContactByID(int contactID) {
+<span class="nc" id="L24">        return dal.getContactByID(contactID);</span>
+    }
+
+    @Override
+    public List&lt;Contact&gt; getAllContacts() {
+<span class="nc" id="L29">        return dal.getAllContacts();</span>
+    }
+
+    @Override
+    public void AddContact(Contact contact) {
+<span class="nc" id="L34">        dal.AddContact(contact);</span>
+<span class="nc" id="L35">    }</span>
+
+    @Override
+    public void DeleteContactByID(int contactID) {
+<span class="nc" id="L39">        dal.DeleteContactByID(contactID);</span>
+<span class="nc" id="L40">    }</span>
+
+    @Override
+    public void UpdateContact(int ID, String studentQuestion, String teacherResponse, int pending, int wasUseful, int wasNotUseful, int studentID, int teacherID) {
+<span class="nc" id="L44">        dal.UpdateContact(ID,studentQuestion,teacherResponse,pending,wasUseful,wasNotUseful,studentID,teacherID);</span>
+<span class="nc" id="L45">    }</span>
+
+    @Override
+    public List&lt;Contact&gt; getAllContactsByStudentID(int studentID) {
+<span class="nc" id="L49">        return dal.getAllContactsByStudentID(studentID);</span>
+    }
+
+    @Override
+    public List&lt;Contact&gt; getAllContactsByTeacherID(int teacherID) {
+<span class="nc" id="L54">        return dal.getAllContactsByTeacherID(teacherID);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

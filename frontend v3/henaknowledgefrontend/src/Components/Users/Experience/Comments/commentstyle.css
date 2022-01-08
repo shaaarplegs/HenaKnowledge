@@ -1,0 +1,48 @@
+textarea {
+    background: rgb(34,193,195);
+    background: linear-gradient(77deg, rgba(255, 255, 255, 0.768) 0%, rgba(21, 113, 233, 0.507) 100%);
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+}
+textarea {
+    border: none;
+    outline: none;
+}
+
+
+/* --------- Card Animation ---------- */
+
+.commentBorder{
+    width: 60%;
+    margin-left: 20%;
+}
+
+
+.commentSection{
+   
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.comment{
+    width: auto;
+    align-items: left;
+    text-align: left;
+    color:black;
+    font-size: 18px;
+    max-width:  600px;
+}
+
+.comment textarea{
+    width: 500px;
+    height: 150px;
+    background: rgb(255, 255, 255);
+    outline: none; 
+    -ms-overflow-style: none
+}
+.addingComment {
+    width: 60%;
+    margin-left: 20%;
+    background-color: rgba(68, 68, 68, 0.103);
+}
